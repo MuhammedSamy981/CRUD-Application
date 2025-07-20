@@ -1,0 +1,80 @@
+<form class="container" [formGroup]="form">
+  <div class="col-12 text-center container p-3">
+    <h3  class="text-secondary text-uppercase"> Employee Form </h3>
+  </div>
+    <div class="container col-6 g-3 align-items-center">
+
+      <label class="col-form-label" for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+
+            <span class="form-text text-danger" *ngIf="form.controls.firstName.touched && form.controls.firstName.errors?.['required']"
+            >
+            This field is required 
+            </span>
+    
+            <span class="form-text text-danger" *ngIf="form.controls.firstName.touched && form.controls.firstName.errors?.['minlength']"
+            >
+            The first name is too short
+            </span>
+
+    </div>
+    <br>
+    <div class="container col-6 g-3 align-items-center">
+
+        <label class="col-form-label"  for="lastName"> Last Name</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+  
+              <span class="form-text text-danger" *ngIf="form.controls.lastName.touched 
+              && form.controls.lastName.errors?.['required']"
+              >
+              This field is required 
+              </span>
+      
+              <span class="form-text text-danger" *ngIf="form.controls.lastName.touched 
+              && form.controls.lastName.errors?.['minlength']"
+              >
+              The last name is too short
+              </span>
+  
+      </div>
+      <br>
+      <div class="container col-6 g-3 align-items-center">
+
+        <label class="col-form-label"  for="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email">
+  
+              <span class="form-text text-danger" *ngIf="form.controls.email.touched 
+              && form.controls.email.errors?.['required']"
+              >
+              This field is required 
+              </span>
+      
+              <span class="form-text text-danger"
+              *ngIf="form.controls.email.touched 
+              && form.controls.email.errors?.['email']">
+              email is invalid
+              </span>
+              
+  
+      </div>
+      <br>
+      <div class="container col-6 g-3 align-items-center">
+
+        <label class="col-form-label"  for="position"> Position</label>
+        <input type="text" class="form-control" id="position" formControlName="position">
+  
+              <span class="form-text text-danger" *ngIf="form.controls.position.touched 
+              && form.controls.position.errors?.['required']"
+              >
+              This field is required 
+              </span>
+  
+      </div>
+      <br>
+
+    <div class="container col-6 g-3 align-items-center">
+        <button class="col-lg-3 text-uppercase btn btn-secondary" (click)="AddEmployee($event)"
+        [disabled]="form.invalid">Add</button>
+    </div>
+</form>
+

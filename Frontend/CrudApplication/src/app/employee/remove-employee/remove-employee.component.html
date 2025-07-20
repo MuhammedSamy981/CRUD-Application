@@ -1,0 +1,17 @@
+
+
+<div *ngIf="!employee" class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+<div *ngIf="employee" class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
+      <p class="card-text">Do you really want to delete this Employee ?</p> 
+      
+<button class="btn btn-danger me-2" (click)="DeleteEmployee($event)" >Yes</button>
+<a class="btn btn-primary" [routerLink]="'/'">No</a>
+    </div>
+  </div>

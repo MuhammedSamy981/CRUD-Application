@@ -1,0 +1,83 @@
+
+<div class="text-center mt-5" *ngIf="!employees || employees==undefined">
+   <div class="spinner-border" role="status">
+     <span class="visually-hidden">Loading...</span>
+   </div>
+ </div>
+
+
+ 
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="exampleModalLabel">Search modal</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+            <div class="mb-3">
+              
+              <input type="text" class="form-control" placeholder="First name" #firstName>
+            </div>
+            <div class="mb-3">
+       
+               <input type="text" class="form-control" placeholder="Last name" #lastName>
+             </div>
+             <div class="mb-3">
+               
+               <input type="text" class="form-control" placeholder="Email" #email>
+             </div>
+             <div class="mb-3">
+               
+               <input type="text" class="form-control"  placeholder="Position" #position>
+             </div>
+          </form>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" 
+         (click)="search(firstName.value,lastName.value,email.value,position.value)">Search</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+
+<table *ngIf="employees" class="text-center container table table-striped">
+<caption class="caption-top">
+   <a class="btn btn-primary me-2"
+   [routerLink]="'/employee/add'"
+   >Add New employee</a>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary"
+ data-bs-toggle="modal" data-bs-target="#exampleModal">
+   Search Employee
+ </button>
+</caption>
+ <thead >
+    <th>First Name</th>  
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Position</th>
+ </thead>
+ <tbody *ngIf="employees!">
+    <tr *ngFor="let employee of paginatedEmployees">
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.email}}</td>
+     <td>{{employee.position}}</td>
+   <td>
+      <a class="btn btn-info me-md-4" [routerLink]="'/employee/'+employee.id">Details</a>
+      <a class="btn btn-success me-md-4" [routerLink]="'/employee/edit/'+employee.id">Edit</a>
+      <a class="btn btn-danger" [routerLink]="'/employee/delete/'+employee.id">Delete</a> 
+   </td>
+    </tr>
+ </tbody>
+</table>
+
+<app-pagination *ngIf="employees"
+[sizeOfPage]="sizeOfPage"
+[data]="employees"
+(sendedData)="GetData($event)"></app-pagination>

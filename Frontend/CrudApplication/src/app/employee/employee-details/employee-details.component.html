@@ -1,0 +1,16 @@
+
+<div *ngIf="!employee" class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+<div *ngIf="employee" class="card">
+    <h5 class="card-header">Employee details </h5>
+    <div class="card-body">
+      <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
+      <p class="card-text">Email: {{employee.email}}</p>
+      <p class="card-text">Position: {{employee.position}}</p>
+      <a class="btn btn-primary" [routerLink]="'/'">Go back</a>
+    </div>
+  </div>
